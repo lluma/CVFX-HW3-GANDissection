@@ -30,17 +30,25 @@
 ### 2. Dissect any GAN model and analyze what you find
 
 生成的HTML
+Layer 1
 ![](https://imgur.com/cFehwap.png)
-| |Ceiling|Sofa |Window|
+Layer 4
+![](https://imgur.com/P5bw27H.png)
+Layer 7
+![](https://imgur.com/ECHxNRT.png)
+
+| |Layer 1|Layer 4|Layer 7|
 |---|---|---|---|
-|Mask | ![](https://imgur.com/4ClxcNR.png) | ![](https://imgur.com/krlqeS1.png) | ![](https://imgur.com/5cDyuQh.png) |
-| Segmentation | ![](https://imgur.com/RCBTe7K.png) | ![](https://imgur.com/9HetTpG.png) | ![](https://imgur.com/VNz5Awo.png) |
-| Result | ![](https://imgur.com/fXrlOzZ.png) | ![](https://imgur.com/1IuQOFP.png) | ![](https://imgur.com/dWo002R.png) |
+| Image | ![](https://imgur.com/SKSTI5t.png) | ![](https://imgur.com/SKSTI5t.png) | ![](https://imgur.com/dWo002R.png) |
+| Segmentation | ![](https://imgur.com/VNz5Awo.png) | ![](https://imgur.com/tXzV6tF.png) | ![](https://imgur.com/iKQtAI0.png) |
+|Mask | ![](https://imgur.com/5cDyuQh.png) | ![](https://imgur.com/CybcyEr.png) | ![](https://imgur.com/hB47rfE.png) |
+
 
 GAN Dissection可以讓GAN的分析視覺化，讓我們可以了解到每一個Unit生成了哪些圖片或是它的意義。GanDissect就是以生成圖片為例，利用Segmentation與Mask進行分析，判斷哪一個Unit與哪一個Class相關，進而可以修改特定的Unit。
 
-上圖為GanDissect跑living room GAN model的結果
-
+* 上圖為GanDissect跑living room GAN model的結果
+    可以看出Layer 1的結果不盡理想，時常會有誤判，也無法正確框出物件的Mask。而在Layer 4則有明顯的進步，可以正確圈出Mask  的位置，但是在Mask大小方面還是無法準確的預測，常常會太小或是超過物件的大小。最後Layer 7則可以更有效的標示出Mask的範圍，雖然比Layer 4的結果好一些，但有時還是會超出一些些範圍，同時還會誤判一些小範圍。
+    
 ---
 
 ### 3. Compare with other method - Generative Inpainting
